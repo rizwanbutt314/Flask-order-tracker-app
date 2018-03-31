@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Orders Tracker</title>
+
+	<link rel="stylesheet" href="../static/css/main.css">
+		
+</head>
+
+
+<body>
+
+	<div class="wrapper">
+	
+	{% if not orders_data %}
+	<h1>No Data Found !</h1>
+	{% endif %}
+           
+		{% for data in orders_data %}
+			<div class="card radius shadowDepth1 {% if data.alert_status %}alert-content {% endif %}">
+         
+                <div class="card__content card__padding">
+				{% if data.alert_status %}
+                    <div class="card__share">
+                        <a id="share" class="share-toggle  alert-icon share-icon" href="javascript:;"></a>
+                    </div>
+				{% endif %}
+
+                    <article class="card__article">
+                        <h2><a href="{{data.url}}">{{data.name}}</a></h2>
+                    </article>
+                </div>
+
+                <div class="card__action">
+                    
+                    <div class="card__prices">
+                        <label>Old Price</label>
+						<span>{{data.old_price}}</span>
+                    </div>
+					<div class="card__prices">
+                        <label>Current Price</label>
+						<span>{{data.new_price}}</span>
+                    </div>
+                </div>
+            </div>
+		{% endfor %}
+	</div>
+
+
+</body>
+</html>
+
